@@ -1,0 +1,23 @@
+[Unit]
+Description=The Polls Axum API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=polls
+Group=polls
+WorkingDirectory=/opt/the-polls
+EnvironmentFile=/etc/the-polls/api.env
+ExecStart=/opt/the-polls/server/target/release/the-polls-api
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/the-polls
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

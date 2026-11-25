@@ -1,0 +1,73 @@
+# One-command hosting for the API and the website.
+#
+#   cp .env.example .env     # then fill in the Paystack/HMAC/admin values
+#   docker compose up -d --build
+#   open http://127.0.0.1:3000
+#
+# For production TLS, set POLL_DOMAIN, PUBLIC_BASE_URL and API_PUBLIC_URL in
+# .env, then run:
+#
+#   docker compose --profile tls up -d --build
+#
+# The database lives in the `polls-data` volume. Back it up (see
+# docs/OPERATIONS.md) before upgrading the api image.
+
+name: the-polls
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      API_BIND: 0.0.0.0:8080
+      DATABASE_URL: "sqlite:///data/polls.sqlite?mode=rwc"
+    volumes:
+      - polls-data:/data
+    ports:
+      # Localhost only. Caddy reaches the API over the compose network; this
+      # mapping exists so operators can hit /api/health from the host.
+      - "127.0.0.1:8080:8080"
+
+  web:
+    build:
+      context: ./web
+      args:
+        API_PROXY_TARGET: http://api:8080
+    restart: unless-stopped
+    environment:
+      PORT: "3000"
+      HOSTNAME: 0.0.0.0
+      API_SERVER_BASE: http://api:8080/api
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"
+
+  caddy:
+    image: caddy:2-alpine
+    profiles: ["tls"]
+    restart: unless-stopped
+    depends_on:
+      - api
+      - web
+    environment:
+      POLL_DOMAIN: ${POLL_DOMAIN:?set POLL_DOMAIN in .env}
+      API_UPSTREAM: api:8080
+      WEB_UPSTREAM: web:3000
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  polls-data:
+  caddy-data:
+  caddy-config:

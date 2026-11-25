@@ -1,0 +1,17 @@
+{$POLL_DOMAIN} {
+	encode zstd gzip
+	
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "no-referrer"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	@api path /api/*
+	reverse_proxy @api {$API_UPSTREAM:127.0.0.1:8080}
+	reverse_proxy {$WEB_UPSTREAM:127.0.0.1:3000}
+
+	# Keep access logging disabled: Paystack sends its private reference in the callback query string.
+}

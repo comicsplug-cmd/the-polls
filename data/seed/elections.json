@@ -1,0 +1,50 @@
+{
+  "source_checked_at": "2026-11-25",
+  "elections": [
+    {
+      "slug": "president-2027",
+      "title": "President of Nigeria",
+      "region": "Nigeria",
+      "election_date": "2027-01-16",
+      "open_at": "2026-12-26T00:00:00+01:00",
+      "close_at": "2027-01-04T23:59:59+01:00",
+      "included": true,
+      "roster_status": "pending_final_legal_and_qa",
+      "source_url": "https://www.inecnigeria.org/documents/uploads/2026/10/b5af9099-864c-4d5e-924d-e1a2c771c529-final-list-presidential.pdf",
+      "source_label": "INEC updated final presidential candidate list",
+      "candidates": [
+        {"party":"AA","name":"Rufai Adekunle F Omo-Aje","running_mate":"Shehu Hussaini"},
+        {"party":"AAC","name":"Sowore Omoyele","running_mate":"Magashi Haruna Garba"},
+        {"party":"ADC","name":"Abubakar Atiku","running_mate":"Amaechi Chibuike Rotimi"},
+        {"party":"ADP","name":"Abbas-Bin Aliyu","running_mate":"Ike Chinazam"},
+        {"party":"APC","name":"Tinubu Bola Ahmed","running_mate":"Shettima Kashim"},
+        {"party":"APM","name":"Makinde Oluseyi Abiodun","running_mate":"Musa Lawal Daura"},
+        {"party":"APP","name":"Yusuf Kabiru","running_mate":"Ofordile Peace Egobia"},
+        {"party":"BP","name":"Adenuga Sunday","running_mate":"Mustapha Usman Turaki"},
+        {"party":"DLA","name":"Adebisi Moses Olusoji","running_mate":"Abubakar Nafisat Usaku"},
+        {"party":"LP","name":"Okereke Sunday Chibuzo","running_mate":"Konto Hajja Bintu"},
+        {"party":"NDC","name":"Obi Peter Gregory","running_mate":"Musa Mohammed Rabiu Kwankwaso"},
+        {"party":"NDP","name":"Okwori Ada Elizabeth Fredrick","running_mate":"Chukwuemeka Uchenna Anthony"},
+        {"party":"NRM","name":"Okereke Nkem Esther","running_mate":"Sulaiman Nasir Muhammed"},
+        {"party":"PDP","name":"Onor Sandy Ojang","running_mate":"Umaru Babangida"},
+        {"party":"PRP","name":"Duke Donald","running_mate":"Mohammed Sule"},
+        {"party":"SDP","name":"Adebayo Adewole Ebenezer","running_mate":"Bugaje Usman Muhammed"},
+        {"party":"YPP","name":"Agada Peter Ada","running_mate":"Key Patience Ndidi"},
+        {"party":"ZLP","name":"Nwanyanwu Daniel Daberechukwu","running_mate":"Hassan Khalid"}
+      ]
+    },
+    {
+      "slug": "rivers-governor-2027",
+      "title": "Governor of Rivers State",
+      "region": "Rivers State",
+      "election_date": "2027-02-06",
+      "open_at": "2026-12-26T00:00:00+01:00",
+      "close_at": "2027-01-04T23:59:59+01:00",
+      "included": false,
+      "roster_status": "pending_transcription_and_qa",
+      "source_url": "https://www.inecnigeria.org/documents/uploads/2026/10/81d476df-5101-426b-af72-8e493dba1cb2-final-list-rivers-governorship.pdf",
+      "source_label": "INEC updated final Rivers governorship candidate list",
+      "candidates": []
+    }
+  ]
+}
